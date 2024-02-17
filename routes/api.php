@@ -28,3 +28,5 @@ Route::delete('/delete-penjualan/{id}', [KasirController::class, 'deletePenjuala
 // Produk
 Route::get('/show-produk', [KasirController::class, 'indexProduk']);
 Route::post('/create-produk', [KasirController::class, 'createProduk']);
+Route::put('/edit-produk/{id}', [KasirController::class, 'editProduk']);
+Route::delete('/delete-produk/{id}', [KasirController::class, 'deleteProduk']);

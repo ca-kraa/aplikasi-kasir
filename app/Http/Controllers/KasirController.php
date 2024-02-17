@@ -85,4 +85,34 @@ class KasirController extends Controller
             'data' => $produk,
         ]);
     }
+
+    public function editProduk(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'nama_produk' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+        ]);
+
+        $produk = Produk::findOrFail($id);
+        $produk->nama_produk = $request->nama_produk;
+        $produk->harga = $request->harga;
+        $produk->stok = $request->stok;
+        $produk->save();
+
+        return response()->json([
+            'message' => 'Produk berhasil diupdate',
+            'data' => $produk,
+        ]);
+    }
+
+    public function deleteProduk($id)
+    {
+        $produk = Produk::findOrFail($id);
+        $produk->delete();
+
+        return response()->json([
+            'message' => 'Produk berhasil dihapus',
+        ]);
+    }
 }
