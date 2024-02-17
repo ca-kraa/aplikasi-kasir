@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 
@@ -113,6 +114,62 @@ class KasirController extends Controller
 
         return response()->json([
             'message' => 'Produk berhasil dihapus',
+        ]);
+    }
+
+    public function indexPelanggan()
+    {
+        $pelanggan =  Pelanggan::all();
+        return response()->json($pelanggan);
+    }
+
+    public function createPelanggan(Request $request)
+    {
+        $validate = $request->validate([
+            'nama_pelanggan' => 'required',
+            'alamat' => 'required',
+            'nomor_telpon' => 'required',
+        ]);
+
+        $pelanggan = new Pelanggan;
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->nomor_telpon = $request->nomor_telpon;
+        $pelanggan->save();
+
+        return response()->json([
+            'message' => 'Pelanggan berhasil dibuat',
+            'data' => $pelanggan,
+        ]);
+    }
+
+    public function editPelanggan(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'nama_pelanggan' => 'required',
+            'alamat' => 'required',
+            'nomor_telpon' => 'required',
+        ]);
+
+        $pelanggan = Pelanggan::findOrFail($id);
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->nomor_telpon = $request->nomor_telpon;
+        $pelanggan->save();
+
+        return response()->json([
+            'message' => 'Pelanggan berhasil diupdate',
+            'data' => $pelanggan,
+        ]);
+    }
+
+    public function deletePelanggan($id)
+    {
+        $pelanggan = Pelanggan::findOrFail($id);
+        $pelanggan->delete();
+
+        return response()->json([
+            'message' => 'Pelanggan berhasil dihapus',
         ]);
     }
 }
