@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/show-penjualan', [KasirController::class, 'indexPenjualan']);
+Route::post('/create-penjualan', [KasirController::class, 'createPenjualan']);
