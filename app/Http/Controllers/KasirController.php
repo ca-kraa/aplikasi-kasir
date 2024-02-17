@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 
@@ -59,5 +60,29 @@ class KasirController extends Controller
         ]);
     }
 
-    
+    public function indexProduk()
+    {
+        $produk  = Produk::all();
+        return response()->json($produk);
+    }
+
+    public function createProduk(Request $request)
+    {
+        $validate = $request->validate([
+            'nama_produk' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+        ]);
+
+        $produk = new Produk;
+        $produk->nama_produk = $request->nama_produk;
+        $produk->harga = $request->harga;
+        $produk->stok = $request->stok;
+        $produk->save();
+
+        return response()->json([
+            'message' => 'Produk berhasil dibuat',
+            'data' => $produk,
+        ]);
+    }
 }

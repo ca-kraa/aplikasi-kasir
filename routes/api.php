@@ -25,3 +25,6 @@ Route::post('/create-penjualan', [KasirController::class, 'createPenjualan']);
 Route::put('/edit-penjualan/{id}', [KasirController::class, 'editPenjualan']);
 Route::delete('/delete-penjualan/{id}', [KasirController::class, 'deletePenjualan']);
 
+// Produk
+Route::get('/show-produk', [KasirController::class, 'indexProduk']);
+Route::post('/create-produk', [KasirController::class, 'createProduk']);

@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detailpenjualans', function (Blueprint $table) {
-            $table->string('id', 7)->primary()->default(Str::random(7));
+            $table->string('id')->primary();
             $table->integer('id_penjual');
             $table->integer('id_produk');
             $table->string('jumlah_produk');
