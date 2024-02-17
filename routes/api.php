@@ -19,5 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Penjualan
 Route::get('/show-penjualan', [KasirController::class, 'indexPenjualan']);
 Route::post('/create-penjualan', [KasirController::class, 'createPenjualan']);
+Route::put('/edit-penjualan/{id}', [KasirController::class, 'editPenjualan']);
+Route::delete('/delete-penjualan/{id}', [KasirController::class, 'deletePenjualan']);
+

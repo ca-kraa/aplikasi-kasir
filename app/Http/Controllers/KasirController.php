@@ -30,4 +30,34 @@ class KasirController extends Controller
             'data' => $penjualan,
         ]);
     }
+
+    public function editPenjualan(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'tanggal_penjualan' => 'required',
+            'id_pelanggan' => 'required',
+        ]);
+
+        $penjualan = Penjualan::findOrFail($id);
+        $penjualan->tanggal_penjualan = $request->tanggal_penjualan;
+        $penjualan->id_pelanggan = $request->id_pelanggan;
+        $penjualan->save();
+
+        return response()->json([
+            'message' => 'Penjualan berhasil diupdate',
+            'data' => $penjualan,
+        ]);
+    }
+
+    public function deletePenjualan($id)
+    {
+        $penjualan = Penjualan::findOrFail($id);
+        $penjualan->delete();
+
+        return response()->json([
+            'message' => 'Penjualan berhasil dihapus',
+        ]);
+    }
+
+    
 }
