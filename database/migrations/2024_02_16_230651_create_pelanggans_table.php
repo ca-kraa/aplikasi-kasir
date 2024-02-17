@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('pelanggans', function (Blueprint $table) {
             $table->string('id', 7)->primary()->default(Str::random(7));
             $table->string('nama_pelanggan');
-            $table->text('text');
+            $table->text('alamat');
             $table->string('nomor_telpon');
             $table->timestamps();
         });
