@@ -35,4 +35,4 @@ Route::delete('/delete-produk/{id}', [KasirController::class, 'deleteProduk']);
 Route::get('/show-pelanggan', [KasirController::class, 'indexPelanggan']);
 Route::post('/create-pelanggan', [KasirController::class, 'createPelanggan']);
 Route::put('/edit-pelanggan/{id}', [KasirController::class, 'editPelanggan']);
-Route::delete('/delete-pelanggan/{id}', [KasirController::class . 'deletePelanggan']);
+Route::delete('/delete-pelanggan/{id}', [KasirController::class, 'deletePelanggan']);
